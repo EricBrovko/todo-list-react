@@ -37,6 +37,19 @@ export default function todoList(state=initialTasks, action) {
     return [
       ...state
     ];
+  } else if(action.type === 'DELETE_TASK') {
+    let positionItem = action.task - 1;
+    state.splice(positionItem, 1);
+
+    state.forEach(row => {
+      if (row.id > action.task) {
+        row.id--;
+      }
+    });
+
+    return [
+      ...state
+    ];
   }
   return state;
 }

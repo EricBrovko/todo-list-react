@@ -23,7 +23,7 @@ class TodoListItem extends Component {
     return (
       <td className="task-actions">
         <button onClick={this.onEditClick.bind(this)}>Edit</button>
-        <button>Delete</button>
+        <button onClick={this.onDeleteClick.bind(this, this.props)}>Delete</button>
       </td>
     );
   }
@@ -63,7 +63,12 @@ class TodoListItem extends Component {
 
   onSaveClick(event) {
     event.preventDefault();
-    this.props.onSaveTask(this.editInput)
+    this.props.onSaveTask(this.editInput);
+    this.setState({ isEditing: false });
+  }
+
+  onDeleteClick(props) {
+    this.props.onDeleteItem(props.id);
     this.setState({ isEditing: false });
   }
 
@@ -91,13 +96,16 @@ export default connect(
   }),
   dispatch => ({
     onToggleTask: (taskProps) => {
-      dispatch({ type: 'TOGGLE_TASK', task: taskProps })
+      dispatch({ type: 'TOGGLE_TASK', task: taskProps });
     },
     onSaveTask: (newTask) => {
       const value = newTask.input.value;
       const id = newTask.id;
       const saveProps = { value, id };
-      dispatch({ type: 'SAVE_TASK', task: saveProps })
+      dispatch({ type: 'SAVE_TASK', task: saveProps });
+    },
+    onDeleteItem: (itemId) => {
+      dispatch({ type: 'DELETE_TASK', task: itemId });
     }
   })
 )(TodoListItem);
