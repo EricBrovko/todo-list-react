@@ -15,3 +15,28 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.todo-app .task-row:nth-child(even) {
+  background-color: #f0f0f0;
+}
+
+.todo-app .task-row td {
+  color: green;
+  cursor: pointer;
+}
+
+.todo-app .task-row .is-completed {
+  color: red;
+}
+
+/*.todo-app tbody .task-row .todo-list-item {
+  background-color: yellow;
+}*/
+
+/*.todo-list-item {
+  background-color: yellow;
+}
+
+.todo-list-item {
+  background-color: yellow;
+}*/

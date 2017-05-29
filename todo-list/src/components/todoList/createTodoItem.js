@@ -5,6 +5,7 @@ class createTodoItem extends Component {
   createTask(event) {
     event.preventDefault();
     this.props.onAddTask(this.refs.createTask.value);
+    this.refs.createTask.value = '';
     // ref={(input) => { this.taskInput = input }} // this.taskInput.value
     // ref="createTask" // this.refs.createTask
   }

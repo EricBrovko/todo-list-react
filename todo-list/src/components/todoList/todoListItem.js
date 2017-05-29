@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class TodoListItem extends Component {
+class TodoListItem extends Component {
     constructor(props) {
         super(props);
 
@@ -12,19 +13,58 @@ export default class TodoListItem extends Component {
   renderActionsSection() {
     if (this.state.isEditing) {
       return (
-        <td>
-          <button>Save</button>
+        <td className="task-actions">
+          <button onClick={this.onSaveClick.bind(this)}>Save</button>
           <button onClick={this.onCancelClick.bind(this)}>Cancel</button>
         </td>
       );
     }
 
     return (
-      <td>
+      <td className="task-actions">
         <button onClick={this.onEditClick.bind(this)}>Edit</button>
         <button>Delete</button>
       </td>
     );
+  }
+
+  renderTaskSection() {
+    const { id, task, isCompleted } = this.props;
+
+    if (this.state.isEditing) {
+      return (
+        <td className="task-actions">
+          <form onSubmit={this.onSaveClick.bind(this)}>
+            <input type="text" defaultValue={task} ref={(input) => {
+                this.editInput = { input, id };
+              }}
+            />
+          </form>
+        </td>
+      );
+    }
+
+    return (
+      <td className={`${isCompleted? 'is-completed' : ''}`}
+          onClick={this.toggleTask.bind(this, this.props)}>{task}
+      </td>
+    );
+  }
+
+  toggleTask(props) {
+    const itemProps = {
+      id: props.id,
+      task: props.task,
+      isCompleted: !props.isCompleted
+    };
+
+    this.props.onToggleTask(itemProps)
+  }
+
+  onSaveClick(event) {
+    event.preventDefault();
+    this.props.onSaveTask(this.editInput)
+    this.setState({ isEditing: false });
   }
 
   onEditClick() {
@@ -37,10 +77,27 @@ export default class TodoListItem extends Component {
 
   render() {
     return (
-        <tr>
-          <td>{this.props.task}</td>
+        <tr className="task-row">
+          {this.renderTaskSection()}
           {this.renderActionsSection()}
         </tr>
     );
   }
 }
+
+export default connect(
+  store => ({
+    store
+  }),
+  dispatch => ({
+    onToggleTask: (taskProps) => {
+      dispatch({ type: 'TOGGLE_TASK', task: taskProps })
+    },
+    onSaveTask: (newTask) => {
+      const value = newTask.input.value;
+      const id = newTask.id;
+      const saveProps = { value, id };
+      dispatch({ type: 'SAVE_TASK', task: saveProps })
+    }
+  })
+)(TodoListItem);

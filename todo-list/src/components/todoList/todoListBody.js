@@ -22,7 +22,7 @@ class TodoListBody extends React.Component {
 
 export default connect(
   store => ({
-    store
+    store: store.todo
   }),
   dispatch => ({})
 )(TodoListBody);

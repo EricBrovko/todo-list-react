@@ -4,35 +4,11 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import App from './App';
+import reducer from './reducers'
 import './styles/index.css';
 
-const initialTasks = [
-  {
-    task: 'make React app',
-    isCompleted: false
-  },
-  {
-    task: 'show tasks',
-    isCompleted: false
-  },
-  {
-    task: 'learn React',
-    isCompleted: true
-  }
-];
-
-function todoList(state=initialTasks, action) {
-  if(action.type === 'ADD_TASK') {
-    return [
-      ...state,
-      action.task
-    ];
-  }
-  return state;
-}
-
 const store = createStore(
-  todoList,
+  reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ &&
   window.__REDUX_DEVTOOLS_EXTENSION__()
 );
