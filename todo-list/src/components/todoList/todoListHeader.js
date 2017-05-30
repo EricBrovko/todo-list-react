@@ -5,8 +5,8 @@ export default class TodoListHeader extends React.Component {
     return (
       <thead>
         <tr>
-          <th>Task</th>
-          <th>Actions</th>
+          <th className="col-sm-10">Tasks</th>
+          <th className="col-sm-2">Actions</th>
         </tr>
       </thead>
     );

@@ -14,16 +14,26 @@ class TodoListItem extends Component {
     if (this.state.isEditing) {
       return (
         <td className="task-actions">
-          <button onClick={this.onSaveClick.bind(this)}>Save</button>
-          <button onClick={this.onCancelClick.bind(this)}>Cancel</button>
+          <div className="btn-group" role="group">
+            <button className="btn btn-success" onClick={this.onSaveClick.bind(this)}>
+              <span className="glyphicon glyphicon-ok"></span>
+            </button>
+            <button className="btn btn-default" onClick={this.onCancelClick.bind(this)}>Cancel</button>
+          </div>
         </td>
       );
     }
 
     return (
       <td className="task-actions">
-        <button onClick={this.onEditClick.bind(this)}>Edit</button>
-        <button onClick={this.onDeleteClick.bind(this, this.props)}>Delete</button>
+        <div className="btn-group" role="group">
+          <button className="btn btn-default" onClick={this.onEditClick.bind(this)}>
+            <span className="glyphicon glyphicon-pencil"></span>
+          </button>
+          <button className="btn btn-danger"  onClick={this.onDeleteClick.bind(this, this.props)}>
+            <span className="glyphicon glyphicon-remove"></span>
+          </button>
+        </div>
       </td>
     );
   }
@@ -35,9 +45,12 @@ class TodoListItem extends Component {
       return (
         <td className="task-actions">
           <form onSubmit={this.onSaveClick.bind(this)}>
-            <input type="text" defaultValue={task} ref={(input) => {
-                this.editInput = { input, id };
-              }}
+            <input type="text"
+                   className="form-control"
+                   defaultValue={task}
+                   ref={(input) => {
+                    this.editInput = { input, id };
+                   }}
             />
           </form>
         </td>
@@ -45,7 +58,7 @@ class TodoListItem extends Component {
     }
 
     return (
-      <td className={`${isCompleted? 'is-completed' : ''}`}
+      <td className={`${isCompleted ? 'is-completed' : 'not-completed'} col-sm-10`}
           onClick={this.toggleTask.bind(this, this.props)}>{task}
       </td>
     );
@@ -82,10 +95,10 @@ class TodoListItem extends Component {
 
   render() {
     return (
-        <tr className="task-row">
-          {this.renderTaskSection()}
-          {this.renderActionsSection()}
-        </tr>
+      <tr className="task-row">
+        { this.renderTaskSection() }
+        { this.renderActionsSection() }
+      </tr>
     );
   }
 }

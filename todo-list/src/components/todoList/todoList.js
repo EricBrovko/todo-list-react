@@ -7,13 +7,17 @@ import CreateTodoItem from './createTodoItem';
 class TodoList extends React.Component {
   render() {
     return (
-      <div className="todo-app">
+      <div className="todo-app container">
         <CreateTodoItem />
-        <div>
-          <table>
-            <TodoListHeader />
-            <TodoListBody />
-          </table>
+        <div className="row">
+          <div className="col-sm-1"></div>
+          <div className="col-sm-10">
+            <table className="table table-hover">
+              <TodoListHeader />
+              <TodoListBody />
+            </table>
+          </div>
+          <div className="col-sm-1"></div>
         </div>
       </div>
     );

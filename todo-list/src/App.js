@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './styles/App.css';
+// import './styles/App.css';
 import Header from './components/header';
 import TodoList from './components/todoList/todoList';
 

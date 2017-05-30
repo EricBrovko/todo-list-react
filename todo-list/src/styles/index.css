@@ -7,3 +7,44 @@ body {
 p {
   margin: 0;
 }
+
+.header {
+  background-color: #222;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.todo-app {
+  margin-top: 25px;
+}
+
+.create-form {
+  margin-bottom: 50px;
+}
+
+.todo-app .task-row .not-completed {
+  color: red;
+  cursor: pointer;
+}
+
+.todo-app .task-row .is-completed {
+  color: green;
+  cursor: pointer;
+}
+
+.msg-error {
+  color: #b22222;
+  font-size: 13px;
+  margin-top: 0;
+}
