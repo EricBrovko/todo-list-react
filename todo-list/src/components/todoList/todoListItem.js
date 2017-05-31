@@ -104,9 +104,7 @@ class TodoListItem extends Component {
 }
 
 export default connect(
-  store => ({
-    store
-  }),
+  store => ({}),
   dispatch => ({
     onToggleTask: (taskProps) => {
       dispatch({ type: 'TOGGLE_TASK', task: taskProps });

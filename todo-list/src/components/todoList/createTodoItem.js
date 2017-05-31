@@ -62,14 +62,18 @@ class createTodoItem extends Component {
       <Form onSubmit={this.createTask.bind(this)} className="row create-form">
         <div className="col-sm-1"></div>
         <div className="col-sm-9">
-          <FormControl type="text"
+          <FormControl
+                 type="text"
                  className="form-control"
                  placeholder="What do I need to do?"
-                 inputRef={(input) => { this.taskInput = input }} />
+                 inputRef={(input) => { this.taskInput = input }}
+          />
           {this.renderError()}
         </div>
         <div className="col-sm-2">
-          <Button type="submit" bsStyle="primary">Create</Button>
+          <Button type="submit" bsStyle="success">
+            <span className="glyphicon glyphicon-plus"></span>
+          </Button>
         </div>
       </Form>
     );

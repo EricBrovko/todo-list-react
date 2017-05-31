@@ -14,14 +14,14 @@ const initialTasks = [
 
 export default function todoList(state=initialTasks, action) {
   const typeOfActions = {
-    ADD_TASK: function () {
+    ADD_TASK:    () => {
       action.task.id = state.length + 1;
       return [
         ...state,
         action.task
       ];
     },
-    TOGGLE_TASK: function () {
+    TOGGLE_TASK: () => {
       let searchItem = state.findIndex((item) => {
         return item.id === action.task.id;
       });
@@ -31,7 +31,7 @@ export default function todoList(state=initialTasks, action) {
         ...state
       ]; // [state[0], state[1] ...]
     },
-    SAVE_TASK: function () {
+    SAVE_TASK:   () => {
       let searchItem = state.findIndex((item) => {
         return item.id === action.task.id;
       });
@@ -41,7 +41,7 @@ export default function todoList(state=initialTasks, action) {
         ...state
       ];
     },
-    DELETE_TASK: function () {
+    DELETE_TASK: () => {
       let positionItem = action.task - 1;
       state.splice(positionItem, 1);
 
@@ -63,43 +63,3 @@ export default function todoList(state=initialTasks, action) {
 
   return state;
 }
-
-// if(action.type === 'ADD_TASK') {
-//   action.task.id = state.length + 1;
-//
-//   return [
-//     ...state,
-//     action.task
-//   ];
-// } else if (action.type === 'TOGGLE_TASK') {
-//   let searchItem = state.findIndex((item) => {
-//     return item.id === action.task.id;
-//   });
-//   state[searchItem].isCompleted = action.task.isCompleted;
-//
-//   return [
-//     ...state
-//   ]; // [state[0], state[1] ...]
-// } else if(action.type === 'SAVE_TASK') {
-//   let searchItem = state.findIndex((item) => {
-//     return item.id === action.task.id;
-//   });
-//   state[searchItem].task = action.task.value;
-//
-//   return [
-//     ...state
-//   ];
-// } else if(action.type === 'DELETE_TASK') {
-//   let positionItem = action.task - 1;
-//   state.splice(positionItem, 1);
-//
-//   state.forEach(row => {
-//     if (row.id > action.task) {
-//       row.id--;
-//     }
-//   });
-//
-//   return [
-//     ...state
-//   ];
-// }

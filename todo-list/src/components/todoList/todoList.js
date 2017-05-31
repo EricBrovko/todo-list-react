@@ -1,14 +1,16 @@
 import React from 'react';
 
 import TodoListHeader from './todoListHeader';
-import TodoListBody from   './todoListBody';
+import TodoListBody   from './todoListBody';
 import CreateTodoItem from './createTodoItem';
+import FindTodoItem   from './findTodoItem';
 
-class TodoList extends React.Component {
+export default class TodoList extends React.Component {
   render() {
     return (
       <div className="todo-app container">
         <CreateTodoItem />
+        <FindTodoItem />
         <div className="row">
           <div className="col-sm-1"></div>
           <div className="col-sm-10">
@@ -23,5 +25,3 @@ class TodoList extends React.Component {
     );
   }
 }
-
-export default TodoList;

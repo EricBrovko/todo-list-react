@@ -6,8 +6,17 @@ import TodoListItem from './todoListItem';
 
 class TodoListBody extends React.Component {
   renderItems() {
-    return _.map(this.props.store, (todo, index) =>
-      <TodoListItem key={index} {...todo} />);
+    // const findValue = _.get(this.props, 'state.findTodos');
+    // const todos = _.get(this.props, 'state.todo');
+    // const findTodos = todos.filter(todo =>
+    //   todo.task.includes(findValue)
+    // );
+
+    // return _.map(findTodos, (task, index) =>
+    //   <TodoListItem key={index} {...task} />);
+
+    return _.map(this.props.state, (task, index) =>
+      <TodoListItem key={index} {...task} />);
       // <TodoListItem key={index} task={todo.task} isCompleted={todo.isCompleted} />);
   }
 
@@ -22,7 +31,9 @@ class TodoListBody extends React.Component {
 
 export default connect(
   store => ({
-    store: store.todo
+    state: store.todo.filter(item => {
+      return item.task.toLowerCase().includes(store.findTodos);
+    })
   }),
   dispatch => ({})
 )(TodoListBody);
