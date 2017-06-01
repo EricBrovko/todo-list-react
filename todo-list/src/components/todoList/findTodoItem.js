@@ -17,7 +17,7 @@ class findTodoItem extends Component {
           <FormControl
                  type="text"
                  className="form-control"
-                 placeholder="What do I need to do?"
+                 placeholder="What do I need to find?"
                  inputRef={(input) => { this.searchInput = input }} />
         </div>
         <div className="col-sm-2">
